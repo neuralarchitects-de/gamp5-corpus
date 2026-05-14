@@ -145,8 +145,7 @@ The canonical rule-set is [`METHODOLOGY.md`](./METHODOLOGY.md). Highlights from 
 - **§ 2A.15** Project Mode declaration rule — new in v1.3.
 - **§ 2A.16** FS § 9 Implementation Risk Register rule — new in v1.3.
 
-Six structural + citation verification gates run after every wave; v1.3 (2026-05-13) passes all
-six. See [`CHANGELOG.md`](./CHANGELOG.md) for full version history.
+See [`CHANGELOG.md`](./CHANGELOG.md) for full version history.
 
 ---
 
@@ -175,8 +174,7 @@ authoring-style diversity all benefit from outside eyes.
 - **Structural issue** (broken traceability, missing END marker, YAML defect, etc.)? Open an issue
   with the offending file.
 - **Want to submit a new URS+FS pair?** Open a draft PR. New pairs must follow METHODOLOGY § 2A
-  end-to-end and pass the six verification gates before merge. The METHODOLOGY file is the
-  contract.
+  end-to-end. The METHODOLOGY file is the contract.
 
 Please read [`KNOWN_LIMITATIONS.md`](./KNOWN_LIMITATIONS.md) before opening an issue — many obvious
 gaps are already tracked.
