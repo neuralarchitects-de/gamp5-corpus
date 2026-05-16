@@ -1,19 +1,20 @@
-# GAMP 5 Synthetic URS+FS Corpus
+# GAMP 5 Synthetic URS + FS + DS Corpus
 
 > 50 User Requirements Specifications (URS) + 50 paired Functional Specifications (FS)
-> for GxP-regulated computer systems — open, free, and built from public regulatory sources.
+> + 50 paired Design Specifications (DS) for GxP-regulated computer systems —
+> open, free, and built from public regulatory sources.
 
 [![License: CC BY-SA 4.0](https://img.shields.io/badge/license-CC%20BY--SA%204.0-blue.svg)](https://creativecommons.org/licenses/by-sa/4.0/)
 [![Release](https://img.shields.io/github/v/release/neuralarchitects-de/gamp5-corpus)](https://github.com/neuralarchitects-de/gamp5-corpus/releases)
-![Files](https://img.shields.io/badge/files-100-blue)
-![Lines](https://img.shields.io/badge/lines-42%2C997-blue)
+![Files](https://img.shields.io/badge/files-150-blue)
+![Lines](https://img.shields.io/badge/lines-79%2C804-blue)
 ![GAMP](https://img.shields.io/badge/GAMP-1%20%C2%B7%203%20%C2%B7%204%20%C2%B7%205-blue)
 
 A public, openly-licensed reference corpus covering the regulated pharma / biotech / medical-device
 system landscape — from compendial instruments to AI/ML platforms, enterprise quality systems,
-clinical-trial systems, post-market and safety systems, and shared IT infrastructure. Generated
-from primary regulatory sources (FDA, EMA, ICH, EU GMP Annex 11, EU AI Act, DACH authorities) and
-paired with matching functional specifications.
+clinical-trial systems, post-market and safety systems, and shared IT infrastructure. Three
+paired specification tiers (URS → FS → DS) for the same 50 systems, anchored in primary regulatory
+sources (FDA, EMA, ICH, EU GMP Annex 11, EU AI Act, DACH authorities).
 
 **Hub page:** https://neuralarchitects.ae/gxp-corpus
 
@@ -39,14 +40,25 @@ contrast sets — never as a drop-in deliverable.
 gamp5-corpus/
 ├── README.md              (this file)
 ├── LICENSE                Creative Commons Attribution-ShareAlike 4.0
-├── CITATION.cff           Citation metadata
-├── CHANGELOG.md           v1.0 → v1.1 → v1.1.1 → v1.2 → v1.3
+├── CITATION.cff           Citation metadata (v1.4)
+├── CHANGELOG.md           v1.0 → v1.1 → v1.1.1 → v1.2 → v1.3 → v1.4
 ├── KNOWN_LIMITATIONS.md   Honest list of what the corpus does well / less well
-├── METHODOLOGY.md         Canonical rule-set (§ 2A, the law)
-├── EVAL_RUBRIC.md         Grading rubric for derived URS
+├── METHODOLOGY.md         Canonical rule-set for URS + FS (§ 2A, the law)
+├── EVAL_RUBRIC.md         Grading rubric for derived URS + FS
 ├── URS/                   50× *_URS_v1.3.md
-└── FS/                    50× *_FS_v1.3.md
+├── FS/                    50× *_FS_v1.3.md
+└── DS/
+    ├── METHODOLOGY.md     Canonical rule-set for DS authoring
+    ├── EVAL_RUBRIC.md     Grading rubric for derived DS
+    ├── CHANGELOG.md       DS-specific version history (v1.0 → v1.1)
+    └── 50× *_DS_v1.1.md
 ```
+
+> DS ships with its own methodology / rubric / changelog inside the `DS/` folder because the DS
+> authoring rules (Cat 4 Configuration Specification vs. Cat 5 Software Design Specification vs.
+> Cat 1 Infrastructure Design Specification vs. Cat 3 vendor-design-reliance statement) are
+> distinct enough from the URS / FS rules that they warranted a separate canonical document
+> rather than a new section in the top-level METHODOLOGY.
 
 ### Tier system (METHODOLOGY § 2A.13)
 
@@ -80,6 +92,14 @@ Depth is sized to real-world system complexity.
 **FS** — paired one-to-one with the URS:
 - § 1 Purpose + seed_corpus_basis · § 2 Architecture · § 3 Component decomposition · § 4 Functional specifications (per-FS-ID rows citing originating URS-IDs) · § 5 Interface specs · § 6 Data + persistence · § 7 Non-functional behaviour · § 8 URS → FS Traceability Matrix (every URS-ID gets its own row, no range compression) · § 9 Implementation Risk Register (new in v1.3) · Revision history.
 
+**DS** — paired one-to-one with the URS and FS (new in v1.4):
+- Shape is GAMP-category-driven (see `DS/METHODOLOGY.md` for the full canonical rule-set):
+  - **Cat 5 (custom-build)** → full Software Design Specification: module-level decomposition, interface contracts, data models, sequence diagrams, deployment topology, custom-development scope.
+  - **Cat 4 (config-on-COTS)** → Configuration Specification: configuration-vs-code split, vendor-feature inventory, environment-scoped configuration items, configuration migration.
+  - **Cat 3 (instrument)** → vendor-design-reliance statement + configuration locks.
+  - **Cat 1 (infrastructure)** → Infrastructure Design Specification.
+- Every DS carries a **FS → DS traceability matrix** so the URS → FS → DS chain is end-to-end auditable for Cat 4 / Cat 5 systems.
+
 ---
 
 ## How to use
@@ -94,12 +114,13 @@ git clone https://github.com/neuralarchitects-de/gamp5-corpus.git
 
 ### Download as a single zip
 - **Latest release**: https://github.com/neuralarchitects-de/gamp5-corpus/releases/latest
-- **Mirror on the hub page**: https://neuralarchitects.ae/corpus/gxp-corpus-v1.3.zip
+- **Mirror on the hub page**: https://neuralarchitects.ae/corpus/gxp-corpus-v1.4.zip
 
 ### Fine-tune or RAG-ground
 The corpus is structured for supervised fine-tuning of regulated-industry specification authoring.
-Pair each URS with its FS using filename matching (system name prefix), or use the explicit
-traceability matrix in FS § 8. The METHODOLOGY file ships the authoring rules.
+Pair each URS with its FS and DS using filename matching (system name prefix), or use the
+explicit traceability matrices in FS § 8 (URS → FS) and the DS FS → DS table. The METHODOLOGY
+files ship the authoring rules.
 
 ---
 
@@ -107,7 +128,7 @@ traceability matrix in FS § 8. The METHODOLOGY file ships the authoring rules.
 
 Short form:
 
-> Attia, N. *GAMP 5 Synthetic URS+FS Corpus*, v1.3 (2026). NA IT Consulting
+> Attia, N. *GAMP 5 Synthetic URS + FS + DS Corpus*, v1.4 (2026). NA IT Consulting
 > (Neural Architects), Sandhausen, Germany. Licensed CC-BY-SA 4.0.
 
 Full BibTeX / RIS / EndNote metadata in [`CITATION.cff`](./CITATION.cff). Right-click → "Cite this
@@ -130,7 +151,8 @@ Full license text in [`LICENSE`](./LICENSE).
 
 ## Methodology
 
-The canonical rule-set is [`METHODOLOGY.md`](./METHODOLOGY.md). Highlights from § 2A:
+The URS + FS canonical rule-set is [`METHODOLOGY.md`](./METHODOLOGY.md). The DS canonical
+rule-set is [`DS/METHODOLOGY.md`](./DS/METHODOLOGY.md). Highlights from the top-level § 2A:
 
 - **§ 2A.1** Citation currency table — FDA / EU / ICH / DACH / vendor primary sources, single source of truth.
 - **§ 2A.2–2A.5** Sub-section maps for 21 CFR Part 11, ICH M10, EU MDR PSUR cadence, 21 CFR Part 58 GLP roles — locks out common citation defects.
@@ -153,8 +175,9 @@ See [`CHANGELOG.md`](./CHANGELOG.md) for full version history.
 
 - **Author:** Nabil Attia (NA IT Consulting / Neural Architects), Sandhausen, Germany.
 - **Authoring approach:** AI-augmented with multi-wave human-directed enrichment and external
-  citation review. Each authoring agent works under METHODOLOGY § 2A and produces self-verified
-  output. All AI authorship is disclosed in the YAML frontmatter.
+  citation review. Each authoring agent works under METHODOLOGY § 2A (URS / FS) or
+  `DS/METHODOLOGY.md` (DS) and produces self-verified output. All AI authorship is disclosed in
+  the YAML frontmatter.
 - **No client data, no NDA material, no regulated records** were used. Sources are public regulator
   documents, ISPE GAMP 5 (2nd ed., 2022), ICH guidance, EU AI Act 2024/1689, and vendor public
   documentation.
@@ -173,8 +196,9 @@ authoring-style diversity all benefit from outside eyes.
 - **Coverage gap?** Open a discussion. We track planned additions in the CHANGELOG TODO list.
 - **Structural issue** (broken traceability, missing END marker, YAML defect, etc.)? Open an issue
   with the offending file.
-- **Want to submit a new URS+FS pair?** Open a draft PR. New pairs must follow METHODOLOGY § 2A
-  end-to-end. The METHODOLOGY file is the contract.
+- **Want to submit a new URS / FS / DS triple?** Open a draft PR. New triples must follow
+  METHODOLOGY § 2A end-to-end for URS + FS and `DS/METHODOLOGY.md` for the matching DS. The
+  METHODOLOGY files are the contract.
 
 Please read [`KNOWN_LIMITATIONS.md`](./KNOWN_LIMITATIONS.md) before opening an issue — many obvious
 gaps are already tracked.

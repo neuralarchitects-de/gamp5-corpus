@@ -1,4 +1,32 @@
-# Changelog — GAMP 5 Synthetic URS+FS Corpus
+# Changelog — GAMP 5 Synthetic URS + FS + DS Corpus
+
+## v1.4 — 2026-05-16 (third specification tier — Design Specifications)
+
+**Released:** 2026-05-16 — extends the corpus from URS + FS pairs to URS / FS / DS triples. Closes the GAMP 5 V-model authoring chain end-to-end for every system in the corpus.
+
+### What's new
+
+- **50 Design Specifications** (`DS/*_DS_v1.1.md`) paired one-to-one with the existing URS + FS by system name. Shape is GAMP-category-driven:
+  - **Cat 5 (custom-build)** → full Software Design Specification: module-level decomposition, interface contracts, data models, sequence diagrams, deployment topology, custom-development scope.
+  - **Cat 4 (config-on-COTS)** → Configuration Specification: configuration-vs-code split, vendor-feature inventory, environment-scoped configuration items, configuration migration.
+  - **Cat 3 (instrument)** → vendor-design-reliance statement + configuration locks.
+  - **Cat 1 (infrastructure)** → Infrastructure Design Specification.
+- **DS-specific methodology and rubric** ship inside the `DS/` folder (`DS/METHODOLOGY.md`, `DS/EVAL_RUBRIC.md`, `DS/CHANGELOG.md`) — distinct enough from the URS / FS rules that they warranted a dedicated canonical document rather than a new section in the top-level `METHODOLOGY.md`.
+- **FS → DS traceability matrix** in every DS, so the URS → FS → DS chain is end-to-end auditable for Cat 4 / Cat 5 systems.
+- README + `CITATION.cff` updated to reflect three-tier scope. Badges bumped: files 100 → **150**, lines 42,997 → **79,804**.
+
+### What's *not* in v1.4
+
+- No changes to URS or FS content — both remain at v1.3 file versions.
+- Top-level `METHODOLOGY.md` (URS / FS rules) and `EVAL_RUBRIC.md` are unchanged.
+- The website hub at https://neuralarchitects.ae/gxp-corpus ships the same v1.4 zip as the GitHub release; both contain all three subtrees.
+
+### Known limitations carried forward
+
+- DS files retain the v1.1 internal version stamp from the SDV-side authoring pipeline; the v1.4 label refers to the *corpus release*, not per-document versions. Future v1.x releases may bump individual DS versions without bumping the corpus version.
+- DS Cat 5 modules use illustrative architecture choices; they're not prescriptive for any particular real-world system.
+
+---
 
 ## v1.3 — 2026-05-13 (URS structural review — Project Mode + risks-leave-URS)
 
